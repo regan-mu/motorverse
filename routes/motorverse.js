@@ -4,7 +4,6 @@ const router = express.Router();
 const vehicleController = require("../controllers/vehicleController");
 const manufacturerController = require("../controllers/manufacturerController");
 const categoryController = require("../controllers/categoryController");
-const { route } = require(".");
 
 //Index
 router.get('/', vehicleController.index);

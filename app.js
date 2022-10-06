@@ -13,7 +13,7 @@ const app = express();
 
 // Mongoose Setup
 // For production
-const db_url = "mongodb+srv://regan:Qwerty254@cluster0.ji1ee5a.mongodb.net/?retryWrites=true&w=majority";
+const db_url = "mongodb+srv://regan:Qwerty254@cluster0.ji1ee5a.mongodb.net/motorverse?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || db_url
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
