@@ -3,5 +3,41 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="icon", href="/images/sport-car.png")
   body
-    block content
+    .main
+      header.navigation
+        .logo
+          h1 MotorVerse
+        nav.navbar 
+          ul.menu 
+            li.link.active  
+              a(href="#") Home 
+            li.link  
+              a(href="#") Categories
+            li.link
+              a(href="#") Add New 
+      .content
+        block content 
+      footer
+        .footer-info
+          .about 
+            h4 About
+            p 
+              | Motorverse is a one stop shop for all your motor vehicle needs. 
+              | Buy your dream car today from Motorverse.
+              | We sell brand new cars, foreign used, locally used as well as trade-ins.
+              | Our partnership with local banks helps our customers get financing at low interest rates.
+            h4 Support
+            p support@motorverse.ke
+            h4 Call
+            p (254) 777-777-777
+          .socials 
+            a(href="facebook.com")
+              img(src="/images/facebook.png" alt="facebook")
+            a(href="linkedin.com")
+              img(src="/images/linkedin.png" alt="linkedin")
+            a(href="twitter.com")
+              img(src="/images/twitter.png" alt="twitter")
+
+        p(class="credits") Created with 💖 by Regan | 2022

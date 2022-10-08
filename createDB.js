@@ -27,10 +27,12 @@ const vehicles = []
 const categories = []
 const manufacturers = []
 
-function createVehicle(model, yom, mileage, category, doors, description, engine, man, price, img, cb) {
+function createVehicle(model, yom, color, location,  mileage, category, doors, description, engine, man, price, img, cb) {
     const vehicleDetails = {
         model: model,
         yom: yom,
+        color: color,
+        location: location,
         mileage: mileage,
         category: category,
         doors: doors,
@@ -95,12 +97,14 @@ function vehiclesAdd(cb) {
         [
             function(callback){
                 createVehicle(
-                    "Audi A6", 
+                    "Audi Q5", 
                     2016, 
-                    20000, 
-                    categories[0], 
+                    "Orange",
+                    "Mombasa",
+                    0000, 
+                    categories[1], 
                     4, 
-                    "Audi A6 is a dream car and a must own for me", 
+                    "Audi Q5 is a dream car and a must own for me", 
                     2500, 
                     manufacturers[0], 
                     3500000, 
@@ -112,6 +116,8 @@ function vehiclesAdd(cb) {
                 createVehicle(
                     "Mercedes E350",
                     2017,
+                    "White",
+                    "Nairobi",
                     25000,
                     categories[0],
                     4,
@@ -163,6 +169,13 @@ function addCategory(cb) {
                 createCategory( 
                     "Sedan", 
                     "sedan or saloon is a passenger car in a three-box configuration with separate compartments for an engine, passengers, and cargo.",
+                    callback
+                )
+            },
+            function(callback) {
+                createCategory( 
+                    "Crossover", 
+                    "Crossover utility vehicle (CUV) is a type of automobile with increased ride height that is built on unibody chassis construction shared with passenger cars, as opposed to traditional sport utility vehicles (SUV) which are built on a body-on-frame chassis construction similar to pickup trucks.",
                     callback
                 )
             }

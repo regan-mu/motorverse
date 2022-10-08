@@ -1,5 +1,63 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  main
+    section.banner 
+      h3 Welcome to Motorverse 
+      p We've got all affordable cars you want.
+      a.button.view(href="#") View Listings
+    section.filter 
+      form(method="post")
+        select(name="price" placeholder="Category")
+          for range in priceRanges 
+            if query 
+              option(
+                value=range.value 
+                selected=(query.price === range.value.toString() ? "selected" : false)
+              ) #{range.label}
+            else 
+              option(value=range.value) #{range.label}
+        select(name="category" placeholder="Category")
+          for cat in category
+            if query
+              option(
+                value=cat._id
+                selected = (query.category === cat._id.toString() ? "selected" : false)
+                ) #{cat.name}
+            else
+              option(value=cat._id) #{cat.name}
+        select(name="make" placeholder="Make")
+          for mk in make
+            if query
+              option(
+                value=mk._id
+                selected = (query.make === mk._id.toString() ? "selected" : false)
+               ) #{mk.name}
+            else 
+              option(value=mk._id) #{mk.name}
+        button(type="submit") Search
+    section.display-cars
+      div Recent Postings
+      article.recent-cars
+        if vehicles.length > 0 
+          for vehicle in vehicles 
+            a( href=vehicle.url class="card")
+              img(src=vehicle.imageUrl alt=vehicle.model)
+              p(class="date-posted") #{vehicle.dateFormatted}
+              section.vehicle-info
+                h4 #{vehicle.model}
+                p YoM: #{vehicle.yom}
+                p Mileage: #{vehicle.mileage}
+                p Location: #{vehicle.location}
+                h3 #{vehicle.priceFormatted}
+          .more-vehicles 
+            a(href="/motorverse/vehicles" class="see-more") See More
+        else
+          .no-match 
+            p No vehicles found under the search criteria.
+            img(src="/images/search.gif")
+    
+
+
+      
+    

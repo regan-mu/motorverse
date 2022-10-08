@@ -7,6 +7,7 @@ const categoryController = require("../controllers/categoryController");
 
 //Index
 router.get('/', vehicleController.index);
+router.post('/', vehicleController.indexPost);
 
 // Create Vehicle 
 router.get("/vehicle/create", vehicleController.createGet);
