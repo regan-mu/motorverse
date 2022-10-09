@@ -1,11 +1,43 @@
+const Vehicle = require("../models/Vehicle");
+const Manufacturer = require("../models/Manufacturer");
+const Category = require("../models/Category");
+const async = require("async");
+
 // List
-exports.categoryList = (req, res) => {
-    res.send("Categories List");
+exports.categoryList = (req, res, next) => {
+    Category.find().exec((error, foundCategories) => {
+        if (error) {
+            return next(error);
+        }
+        res.render("categories", {title: "Vehicle Categories", categories: foundCategories});
+    });
 }
 
 // Detail
-exports.categoryDetail = (req, res) => {
-    res.send("Category details");
+exports.categoryDetail = (req, res, next) => {
+    async.parallel(
+        {
+            category(callback) {
+                Category.findById(req.params.id).exec(callback);
+            },
+            categoryVehicles(callback) {
+                Vehicle.find({category: req.params.id}).sort({model: 1}).exec(callback);
+            }
+        },
+        (error, results) => {
+            if (error) {
+                next(error);
+            }
+            res.render(
+                "categoryDetail", 
+                {
+                    title: results.category.name, 
+                    vehicles: results.categoryVehicles,
+                    category: results.category
+                }
+            );
+        }
+    )
 }
 
 // Create

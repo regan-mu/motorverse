@@ -1,0 +1,14 @@
+extends layout 
+block content
+    main.all-categories 
+        h3 All Categories
+        article.categories
+            if categories 
+                for category in categories 
+                    a(href=category.url)
+                        h4 #{category.name}
+                        p #{category.description}
+            else
+                .no-match 
+                    p No Categories.
+                    img(src="/images/search.gif")

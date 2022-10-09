@@ -1,3 +1,20 @@
 extends layout 
 block content 
-    main
+    main(class="all-vehicles")
+        h3 All vehicles
+        article(class="vehicle-list")
+            if vehicles.length > 0 
+                for vehicle in vehicles 
+                    a( href=vehicle.url class="card")
+                        img(src=vehicle.imageUrl alt=vehicle.model)
+                        p(class="date-posted") #{vehicle.dateFormatted}
+                        section.vehicle-info
+                            h4 #{vehicle.model}
+                            p YoM: #{vehicle.yom}
+                            p Mileage: #{vehicle.mileage}
+                            p Location: #{vehicle.location}
+                            h3 #{vehicle.priceFormatted}
+            else
+                .no-match 
+                    p No vehicles posted yet.
+                    img(src="/images/search.gif")

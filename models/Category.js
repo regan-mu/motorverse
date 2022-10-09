@@ -9,7 +9,7 @@ const categorySchema = Schema(
 );
 
 categorySchema.virtual("url").get(function() {
-    return `motorverse/category/${this._id}`
+    return `/motorverse/category/${this._id}`
 });
 
 module.exports = mongoose.model("Category", categorySchema);

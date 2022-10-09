@@ -12,7 +12,7 @@ const manufacturerSchema = Schema(
 );
 
 manufacturerSchema.virtual("url").get(function() {
-    return `motorverse/manufacturer/${this._id}`
+    return `/motorverse/manufacturer/${this._id}`
 });
 
 module.exports = mongoose.model("Manufacturer", manufacturerSchema);

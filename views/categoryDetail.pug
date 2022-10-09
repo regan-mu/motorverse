@@ -1,0 +1,16 @@
+extends layout 
+block content 
+    main.category-detail 
+        section.category-info 
+            h3 #{category.name}
+            p #{category.description}
+        section.category-vehicles
+            for vehicle in vehicles 
+                a( href=vehicle.url class="card")
+                    img(src=vehicle.imageUrl alt=vehicle.model)
+                    section.vehicle-info
+                        h4 #{vehicle.model}
+                        p YoM: #{vehicle.yom}
+                        p Mileage: #{vehicle.mileage}
+                        p Location: #{vehicle.location}
+                        h3 #{vehicle.priceFormatted}

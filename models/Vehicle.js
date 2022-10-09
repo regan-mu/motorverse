@@ -21,7 +21,7 @@ const vehicleSchema = new Schema(
 );
 
 vehicleSchema.virtual("url").get(function() {
-    return `motorverse/vehicle/${this._id}`
+    return `/motorverse/vehicle/${this._id}`
 });
 vehicleSchema.virtual("priceFormatted").get(function() {
     const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined, {currency: "Kes", style:"currency"});

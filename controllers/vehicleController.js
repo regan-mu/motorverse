@@ -135,7 +135,7 @@ exports.vehicleDetail = (req, res, next) => {
             return next(error);
         }
         if (foundVehicle) {
-            res.render("vehicleDetail", {title: foundVehicle.name, vehicle:foundVehicle});
+            res.render("vehicleDetail", {title: foundVehicle.model, vehicle:foundVehicle});
         } else {
             const notFound = new Error();
             notFound.message = "No vehicle found";
