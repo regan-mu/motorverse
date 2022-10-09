@@ -113,13 +113,36 @@ exports.indexPost = (req, res, next) => {
 }
 
 // Vehicle List
-exports.vehicleList = (req, res) => {
-    res.send("Vehicle List");
+exports.vehicleList = (req, res, next) => {
+    Vehicle.find()
+    .populate("category")
+    .populate("manufacturer")
+    .exec((error, allVehicles) => {
+        if(error) {
+            next(error);
+        }
+        res.render("vehicleList", {title: "All Vehicles", vehicles: allVehicles});
+    })
 }
 
 // Vehicle Detail
-exports.vehicleDetail = (req, res) => {
-    res.render("");
+exports.vehicleDetail = (req, res, next) => {
+    Vehicle.findById(req.params.id)
+    .populate("category")
+    .populate("manufacturer")
+    .exec((error, foundVehicle) => {
+        if(error) {
+            return next(error);
+        }
+        if (foundVehicle) {
+            res.render("vehicleDetail", {title: foundVehicle.name, vehicle:foundVehicle});
+        } else {
+            const notFound = new Error();
+            notFound.message = "No vehicle found";
+            notFound.status = 404;
+            next(notFound);
+        }
+    });
 }
 
 // Create Vehicle

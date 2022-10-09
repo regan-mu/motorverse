@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    main.vehicle-main
+        section.about-vehicle
+            .vehicle-image 
+                img(src=vehicle.imageUrl alt=vehicle.name)
+                h3 #{vehicle.model} #{vehicle.yom}
+                h2(class="price") #{vehicle.priceFormatted}
+                .description 
+                    .property 
+                        h5 Location 
+                        p #{vehicle.location}
+                    .property 
+                        h5 Color 
+                        p #{vehicle.color}
+                    .property 
+                        h5 Mileage 
+                        p #{vehicle.mileage}
+                    .property 
+                        h5 Engine 
+                        p #{vehicle.engine_capacity}cc
+                    .property 
+                        h5 Doors
+                        p #{vehicle.doors}
+                    .property 
+                        h5 Category 
+                        a(href=vehicle.category.url) #{vehicle.category.name}
+                    .property 
+                        h5 Make 
+                        a(href=vehicle.manufacturer.url) #{vehicle.manufacturer.name}
+                h4 Description
+                p #{vehicle.description}
+        section.other-info
+            h4 All our cars go thought the 150+ point inspection and are verified. 
+                | We manage the entire transaction on your behalf making it convenient and hassle free for you
+            h3 Our partners 
+                .partners 
+                    h2 KCB 
+                    h2 Coop Bank

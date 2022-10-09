@@ -58,9 +58,6 @@ body {
   position: relative;
   padding: 4px;
 }
-.menu .link.active a {
-  color: var(--themecolor);
-}
 .menu .link::after {
   content: "";
   position: absolute;
@@ -277,4 +274,84 @@ footer .socials {
   margin: 16px 0 0;
   border-top: 0.1px solid rgb(79, 79, 79);
   padding: 12px 0 0;
+}
+
+/* ----------------- CAR DETAIL PAGE ----------------- */
+
+.vehicle-main {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: 32px;
+}
+.about-vehicle {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.about-vehicle img {
+  width: 100%;
+}
+.about-vehicle .description {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 16px;
+  margin: 12px 0;
+  background-color: rgb(26, 26, 26);
+  padding: 12px;
+}
+.about-vehicle h3 {
+  margin: 12px 0 0;
+}
+.about-vehicle .price {
+  color: var(--themecolor);
+  font-size: 1.3rem;
+}
+.vehicle-image > p {
+  font-style: italic;
+}
+.description .property {
+  padding: 10px;
+  background-color: #000;
+}
+.description .property h5 {
+  font-size: 1.1rem;
+  color: var(--themecolor);
+}
+.description .property p {
+  font-size: 0.9rem;
+}
+.description .property a {
+  color: rgb(186, 186, 186);
+  text-decoration: underline;
+}
+.other-info {
+  width: 100%;
+  height: 100%;
+}
+.other-info h4 {
+  margin: 0 0 16px;
+  padding: 0 0 16px;
+  border-bottom: 0.1px solid rgb(26, 26, 26);
+}
+.other-info h3 {
+  font-size: 1.4rem;
+}
+.other-info .partners {
+  width: 100%;
+  height: auto;
+  font-size: 1.3rem;
+  display: flex;
+  gap: 32px;
+  margin: 32px 0 0;
+}
+.other-info .partners h2 {
+  padding: 12px;
+  background-color: rgb(26, 26, 26);
+  border-radius: 8px;
 }
