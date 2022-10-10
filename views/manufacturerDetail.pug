@@ -1,0 +1,19 @@
+extends layout 
+block content
+    main.make-detail
+        section.make-info 
+            h3 #{make.name}
+            p Hq: #{make.headquarter}
+            p Founding: #{make.year_founded}
+            a(href=make.website_url) Website
+            p.describe-make #{make.description}
+        section.make-vehicles
+            for vehicle in makeVehicles 
+                a( href=vehicle.url class="card")
+                    img(src=vehicle.imageUrl alt=vehicle.model)
+                    section.vehicle-info
+                        h4 #{vehicle.model}
+                        p YoM: #{vehicle.yom}
+                        p Mileage: #{vehicle.mileage}
+                        p Location: #{vehicle.location}
+                        h3 #{vehicle.priceFormatted}

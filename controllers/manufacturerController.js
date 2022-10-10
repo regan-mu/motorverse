@@ -1,8 +1,45 @@
-exports.manufacturerList = (req, res) => {
-    res.send("Manufacture List");
+const Vehicle = require("../models/Vehicle");
+const Manufacturer = require("../models/Manufacturer");
+const async = require("async");
+
+exports.manufacturerList = (req, res, next) => {
+    Manufacturer.find().sort({name: 1}).exec((error, foundMakers) => {
+        if (error) {
+            return next(error);
+        }
+        res.render(
+            "manufacturerList", 
+            {
+                title: "All Manufaturers",
+                manufacturers: foundMakers
+            }
+        )
+    });
 }
-exports.manufacturerDetail = (req, res) => {
-    res.send("Manufacturer Detail");
+exports.manufacturerDetail = (req, res, next) => {
+    async.parallel(
+        {
+            makeVehicles(callback) {
+                Vehicle.find({manufacturer: req.params.id}).exec(callback)
+            },
+            make(callback){
+                Manufacturer.findById(req.params.id).exec(callback)
+            }
+        },
+        (error, results) => {
+            if (error) {
+                return next(error)
+            }
+            res.render(
+                "manufacturerDetail",
+                {
+                    title: results.make.name,
+                    make: results.make,
+                    makeVehicles: results.makeVehicles
+                }
+            )
+        }
+    )
 }
 
 // Create

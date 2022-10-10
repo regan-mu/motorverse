@@ -96,7 +96,6 @@ exports.indexPost = (req, res, next) => {
             if (error) {
                 next(error);
             }
-            console.log(query)
             res.render(
                 "index", 
                 {

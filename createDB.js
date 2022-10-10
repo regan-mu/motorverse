@@ -128,6 +128,23 @@ function vehiclesAdd(cb) {
                     "https://www.motortrend.com/uploads/sites/10/2015/11/2014-mercedes-benz-e-class-350-sport-sedan-angular-front.png?fit=around%7C875:492.1875",
                     callback
                 )
+            },
+            function(callback){
+                createVehicle(
+                    "Audi A4",
+                    2015,
+                    "Gray",
+                    "Nairobi",
+                    31000,
+                    categories[0],
+                    4,
+                    "The Audi A4 is a line of compact executive cars produced since 1994 by the German car manufacturer Audi, a subsidiary of the Volkswagen Group.",
+                    2000,
+                    manufacturers[0],
+                    2450000,
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/2018_Audi_A4_Sport_TDi_Quattro_S-A_2.0.jpg/1600px-2018_Audi_A4_Sport_TDi_Quattro_S-A_2.0.jpg",
+                    callback
+                )
             }
         ],
         cb

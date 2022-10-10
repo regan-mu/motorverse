@@ -1,5 +1,4 @@
 const Vehicle = require("../models/Vehicle");
-const Manufacturer = require("../models/Manufacturer");
 const Category = require("../models/Category");
 const async = require("async");
 

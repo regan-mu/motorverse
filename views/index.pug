@@ -8,33 +8,42 @@ block content
       a.button.view(href="/motorverse/vehicles") View Listings
     section.filter 
       form(method="post")
-        select(name="price" placeholder="Category")
-          for range in priceRanges 
-            if query 
-              option(
-                value=range.value 
-                selected=(query.price === range.value.toString() ? "selected" : false)
-              ) #{range.label}
-            else 
-              option(value=range.value) #{range.label}
-        select(name="category" placeholder="Category")
-          for cat in category
-            if query
-              option(
-                value=cat._id
-                selected = (query.category === cat._id.toString() ? "selected" : false)
-                ) #{cat.name}
-            else
-              option(value=cat._id) #{cat.name}
-        select(name="make" placeholder="Make")
-          for mk in make
-            if query
-              option(
-                value=mk._id
-                selected = (query.make === mk._id.toString() ? "selected" : false)
-               ) #{mk.name}
-            else 
-              option(value=mk._id) #{mk.name}
+        .input-field
+          label(for="price") Price
+          br
+          select(id="price" name="price" placeholder="Category")
+            for range in priceRanges 
+              if query 
+                option(
+                  value=range.value 
+                  selected=(query.price === range.value.toString() ? "selected" : false)
+                ) #{range.label}
+              else 
+                option(value=range.value) #{range.label}
+        .input-field
+          label(for="category") Category
+          br
+          select(id="category" name="category" placeholder="Category")
+            for cat in category
+              if query
+                option(
+                  value=cat._id
+                  selected = (query.category === cat._id.toString() ? "selected" : false)
+                  ) #{cat.name}
+              else
+                option(value=cat._id) #{cat.name}
+        .input-field
+          label(for="make") Make
+          br
+          select(id="make" name="make" placeholder="Make")
+            for mk in make
+              if query
+                option(
+                  value=mk._id
+                  selected = (query.make === mk._id.toString() ? "selected" : false)
+                ) #{mk.name}
+              else 
+                option(value=mk._id) #{mk.name}
         button(type="submit") Search
     section.display-cars
       div Recent Postings

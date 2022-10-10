@@ -1,0 +1,15 @@
+extends layout 
+block content 
+    main.makes-list 
+        h3 All Manufacturers 
+        article.all-makes 
+            if manufacturers
+                for make in manufacturers 
+                    a(href=make.url)
+                        h4 #{make.name}
+                        p Headquarters: #{make.headquarter}
+                        p Founded: #{make.year_founded}
+            else 
+                .no-match 
+                        p No Manufacturers.
+                        img(src="/images/search.gif")
