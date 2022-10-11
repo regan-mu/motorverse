@@ -36,10 +36,6 @@ router.get("/manufacturers", manufacturerController.manufacturerList);
 router.get("/manufacturer/create", manufacturerController.createGet);
 router.post("/manufacturer/create", manufacturerController.createPost);
 
-// Delete Manufacturer
-router.get("/manufacturer/:id/delete", manufacturerController.deleteGet);
-router.post("/manufacturer/:id/delete", manufacturerController.deletePost);
-
 // Update Manufacturer
 router.get("/manufacturer/:id/update", manufacturerController.updateGet);
 router.post("/manufacturer/:id/update", manufacturerController.updatePost);
@@ -55,10 +51,6 @@ router.get("/categories", categoryController.categoryList);
 // Create
 router.get("/category/create", categoryController.createGet);
 router.post("/category/create", categoryController.createPost);
-
-// Delete
-router.get("/category/:id/delete", categoryController.deleteGet);
-router.post("/category/:id/delete", categoryController.deletePost);
 
 // Update
 router.get("/category/:id/update", categoryController.updateGet);

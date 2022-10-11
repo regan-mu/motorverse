@@ -1,0 +1,27 @@
+extends layout 
+block content 
+    section.form-section 
+        h3 Add Category
+        form(method="post" class="category-form")
+            .input-field
+                label(for="name") Name
+                br
+                input(
+                    id="name" 
+                    type="text" 
+                    name="name" 
+                    placeholder="e.g SUV, Sedan" 
+                    required
+                    value=query ? query.name: ""
+                    )
+            .input-field.describe 
+                label(for="desc") Description
+                br
+                textarea(
+                    id="desc" 
+                    name="description" 
+                    placeholder="Category Description"  
+                    required
+                    ) #{query ? query.description: ""}
+            .input-field.submit 
+                button(type="submit"  class="submit-btn") Add Category

@@ -102,14 +102,6 @@ exports.createPost = [
     }
 ]
 
-// Delete
-exports.deleteGet = (req, res) => {
-    res.send("Delete manufacturer Get");
-}
-exports.deletePost = (req, res) => {
-    res.send("Delete Manufacturer Post");
-}
-
 // Update
 exports.updateGet = (req, res) => {
     res.send("Update Manufacturer Get");

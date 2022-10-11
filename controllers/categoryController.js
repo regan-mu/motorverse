@@ -1,6 +1,7 @@
 const Vehicle = require("../models/Vehicle");
 const Category = require("../models/Category");
 const async = require("async");
+const {body, validationResult} = require("express-validator");
 
 // List
 exports.categoryList = (req, res, next) => {
@@ -41,19 +42,51 @@ exports.categoryDetail = (req, res, next) => {
 
 // Create
 exports.createGet = (req, res) => {
-    res.send("Create cat get");
+    res.render("createCategory", {
+        title: "Create Category",
+        query: null
+    });
 }
-exports.createPost = (req, res) => {
-    res.send("Create Cat post");
-}
+exports.createPost = [
+    body("name", "Name required")
+        .trim()
+        .isLength({min: 2})
+        .escape(),
+    body("description", "Category Description required")
+        .trim()
+        .isLength({min: 10})
+        .escape(),
+    (req, res, next) => {
+    const errors = validationResult(req);
+    const category = new Category({
+        name: req.body.name,
+        description: req.body.description
+    });
+    if (!errors.isEmpty()) {
+        res.render("createCategory", {
+            title: "Create Category",
+            query: category
+        });
+    } else {
+        Category.findOne({name: req.body.name}).exec((err, foundCategory) => {
+            if(err) {
+                return next(err);
+            }
+            if (foundCategory) {
+                res.redirect(foundCategory.url);
+            } else {
+                category.save(err => {
+                    if(err) {
+                        return next(err);
+                    } else {
+                        res.redirect(category.url);
+                    }
+                })
+            }
+        })
+    }
+}]
 
-// Delete
-exports.deleteGet = (req, res) => {
-    res.send("Delete Cat Get");
-}
-exports.deletePost = (req, res) => {
-    res.send("Delete Cat Post");
-}
 
 // Update
 exports.updateGet = (req, res) => {
