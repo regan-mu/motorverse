@@ -1,7 +1,10 @@
 extends layout 
 block content 
     main.makes-list 
-        h3 All Manufacturers 
+        .top-sec
+            h3 All Manufacturers 
+            .add-btn
+                a(href="/motorverse/manufacturer/create") Create Manufacturer
         article.all-makes 
             if manufacturers
                 for make in manufacturers 

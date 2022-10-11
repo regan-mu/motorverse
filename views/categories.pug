@@ -1,7 +1,10 @@
 extends layout 
 block content
     main.all-categories 
-        h3 All Categories
+        .top-sec
+            h3 All Categories
+            .add-btn
+                a(href="/motorverse/category/create") Create Category
         article.categories
             if categories 
                 for category in categories 
@@ -12,3 +15,4 @@ block content
                 .no-match 
                     p No Categories.
                     img(src="/images/search.gif")
+        

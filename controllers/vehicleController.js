@@ -117,6 +117,7 @@ exports.vehicleList = (req, res, next) => {
     Vehicle.find()
     .populate("category")
     .populate("manufacturer")
+    .sort({uploadDate: -1})
     .exec((error, allVehicles) => {
         if(error) {
             next(error);

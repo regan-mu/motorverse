@@ -350,7 +350,8 @@ footer .socials {
   display: flex;
   gap: 32px;
 }
-.action-btn a {
+
+.action-btn a, .add-btn a {
   padding: 5px 12px;
   color: #000;
   background-color: rgb(186, 186, 186);
@@ -376,12 +377,20 @@ footer .socials {
   font-size: 1.3rem;
   display: flex;
   gap: 32px;
-  margin: 32px 0 0;
+  margin: 32px 0;
+  border-bottom: 0.1px solid rgb(79, 79, 79);
+  padding: 0 0 32px;
 }
 .other-info .partners h2 {
   padding: 12px;
   background-color: rgb(26, 26, 26);
   border-radius: 8px;
+}
+.buy {
+  padding: 8px 24px;
+  background-color: var(--themecolor);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .all-vehicles {
   width: 100%;
@@ -489,6 +498,12 @@ footer .socials {
 .makes-list {
   width: 100%;
   height: auto;
+}
+.top-sec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
 }
 .makes-list h3 {
   font-size: 1.5rem;
