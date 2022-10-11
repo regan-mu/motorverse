@@ -3,18 +3,20 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const compression = require("compression");
+const helmet = require("helmet")
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const motorverse = require("./routes/motorverse");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
+app.use(helmet());
 
 // Mongoose Setup
 // For production
-const db_url = "mongodb+srv://regan:Qwerty254@cluster0.ji1ee5a.mongodb.net/motorverse?retryWrites=true&w=majority";
-const mongoDB = process.env.MONGODB_URI || db_url
+const mongoDB = process.env.MONGODB_URI
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -23,6 +25,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(compression())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
