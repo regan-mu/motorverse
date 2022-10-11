@@ -2,6 +2,7 @@ const Vehicle = require("../models/Vehicle");
 const Manufacturer = require("../models/Manufacturer");
 const Category = require("../models/Category");
 const async = require("async");
+const {body, validationResult} = require("express-validator");
 
 const vehiclePriceRanges = [
     {label: "Below 500k", value: 500000},
@@ -146,12 +147,135 @@ exports.vehicleDetail = (req, res, next) => {
 
 // Create Vehicle
 
-exports.createGet = (req, res) => {
-    res.send("Create Vehicle Get");
+exports.createGet = (req, res, next) => {
+    async.parallel(
+        {
+            makes(callback) {
+                Manufacturer.find({}, "name").exec(callback)
+            },
+            categories(callback) {
+                Category.find({}, "name").exec(callback)
+            }
+        },
+        (error, results) => {
+            if (error) {
+                return next(error);
+            }
+            res.render(
+                "vehicleCreate", 
+                {
+                    title: "Add Vehicle",
+                    category: results.categories,
+                    make: results.makes,
+                    query: null
+                }
+            );
+        }
+    );
 }
-exports.createPost = (req, res) => {
-    res.send("Create Vehicle post");
-}
+exports.createPost = [
+    body("model", "Vehicle model required")
+        .trim()
+        .isLength({min: 2})
+        .escape(),
+    body("yom", "Year of manufacture required")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("location", "Location Required")
+        .trim()
+        .isLength({min: 2})
+        .escape(),
+    body("mileage", "Mileage required")
+        .trim()
+        .isLength({min:1})
+        .escape(),
+    body("category", "Must select category")
+        .trim()
+        .isLength({min: 2})
+        .escape(),
+    body("doors", "Number of doors required")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("engine", "Engine Capacity required")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("make", "Select manufacturer")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("price", "Vehicle price required")
+        .trim()
+        .isLength({min: 4})
+        .escape(),
+    body("imageurl", "Image url required")
+        .trim()
+        .isLength({min: 1}),
+    body("description", "Vehicle Description required")
+        .trim()
+        .isLength({min: 1})
+        .escape()
+    ,
+    (req, res, next) => {
+        const errors = validationResult(req)
+        query = {
+            model: req.body.model,
+            yom: req.body.yom,
+            color: req.body.color,
+            location: req.body.location,
+            mileage: req.body.mileage,
+            category: req.body.category,
+            doors: req.body.doors,
+            engine_capacity: req.body.engine,
+            manufacturer: req.body.make,
+            price: req.body.price,
+            imageUrl: req.body.imageurl,
+            description: req.body.description
+        }
+        const vehicle = new Vehicle(query);
+
+        if (!errors.isEmpty()) {
+            async.parallel(
+                {
+                    makes(callback) {
+                        Manufacturer.find({}, "name").exec(callback)
+                    },
+                    categories(callback) {
+                        Category.find({}, "name").exec(callback)
+                    }
+                },
+                (error, results) => {
+                    if (error) {
+                        return next(error);
+                    }
+                    res.render(
+                        "vehicleCreate", 
+                        {
+                            title: "Add Vehicle",
+                            category: results.categories,
+                            make: results.makes,
+                            query: query
+                        }
+                    );
+                }
+            );
+        } else {
+            if (req.body.password.trim() === "Regan123App") {
+                vehicle.save((err) => {
+                    err ? next(err): res.redirect(vehicle.url);
+                });
+            } else {
+                const passwordErr = new Error();
+                passwordErr.message = "Enter correct password";
+                passwordErr.status = 401;
+                passwordErr.name = "Unauthorized";
+                next(passwordErr)
+            }
+        }
+    }
+]
 
 // Delete
 exports.deleteGet = (req, res) => {

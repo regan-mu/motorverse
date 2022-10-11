@@ -1,0 +1,150 @@
+extends layout 
+block content 
+    section.form-section 
+        h3 Add vehicle
+        form(method="post")
+            .input-field
+                label(for="model") Model
+                br
+                input(
+                    id="model" 
+                    type="text" 
+                    name="model" 
+                    placeholder="Model e.g Audi Q5" 
+                    required
+                    value=query ? query.model: ""
+                    )
+            .input-field
+                label(for="yom") Year of Manufacture
+                br
+                input(
+                    id="yom" 
+                    type="number" 
+                    name="yom" 
+                    placeholder="1958" 
+                    required
+                    value=query ? query.yom: ""
+                    )
+            .input-field
+                label(for="color") Color
+                br
+                input(
+                    id="color" 
+                    type="text" 
+                    name="color" 
+                    placeholder="Black" 
+                    required
+                    value=query ? query.color: ""
+                    )
+            .input-field
+                label(for="loc") Location
+                br
+                input(
+                    id="loc" 
+                    type="text" 
+                    name="location" 
+                    placeholder="Kiambu Rd, Nairobi" 
+                    required
+                    value=query ? query.location: ""
+                    )
+            .input-field
+                label(for="mileage") Mileage
+                br
+                input(
+                    id="mileage" 
+                    type="number" 
+                    name="mileage" 
+                    placeholder="25000" 
+                    required
+                    value=query ? query.mileage: ""
+                    )
+            .input-field
+                label(for="category") Category
+                br
+                select(id="category" name="category" placeholder="Category")
+                    option(value="" disabled="true" selected="true" hidden="true") Select Category
+                    for cat in category
+                        if query
+                            option(
+                            value=cat._id
+                            selected = (query.category === cat._id.toString() ? "selected" : false)
+                            ) #{cat.name}
+                        else
+                            option(value=cat._id) #{cat.name}
+            .input-field
+                label(for="doors") Doors
+                br
+                input(
+                    id="doors" 
+                    type="number" 
+                    name="doors" 
+                    placeholder="4" 
+                    required
+                    value=query ? query.doors: ""
+                    )
+            .input-field
+                label(for="engine") Engine Capacity
+                br
+                input(
+                    id="engine" 
+                    type="number" 
+                    name="engine" 
+                    placeholder="1800" 
+                    required
+                    value=query ? query.engine_capacity: "")
+            .input-field
+                label(for="make") Make
+                br
+                select(id="make" name="make" placeholder="Make")
+                    option(value="" disabled="true" selected="true" hidden="true") Select Make
+                    for mk in make
+                        if query
+                            option(
+                            value=mk._id
+                            selected = (query.manufacturer === mk._id.toString() ? "selected" : false)
+                            ) #{mk.name}
+                        else 
+                            option(value=mk._id) #{mk.name}
+            .input-field
+                label(for="price") Price
+                br
+                input(
+                    id="price" 
+                    type="number" 
+                    name="price" 
+                    placeholder="Price" 
+                    required
+                    value=query ? query.price: ""
+                    )
+            .input-field
+                label(for="imageurl") Image Url
+                br
+                input(
+                    id="imageurl" 
+                    type="text"
+                    name="imageurl" 
+                    placeholder="https://images.com" 
+                    required
+                    value=query ? query.imageUrl: ""
+                    )
+            .input-field.describe 
+                label(for="desc") Description
+                br
+                textarea(
+                    id="desc" 
+                    name="description" 
+                    placeholder="Description"  
+                    required
+                    ) #{query ? query.description: ""}
+            .input-field.password
+                label(for="password") Password
+                br
+                input(
+                    id="password" 
+                    type="password"
+                    name="password" 
+                    placeholder="Password" 
+                    required
+                    )
+            .input-field.submit 
+                button(type="submit"  class="submit-btn") Add Vehicle

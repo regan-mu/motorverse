@@ -3,10 +3,15 @@ block content
     main.make-detail
         section.make-info 
             h3 #{make.name}
-            p Hq: #{make.headquarter}
-            p Founding: #{make.year_founded}
-            a(href=make.website_url) Website
             p.describe-make #{make.description}
+            .bio-cards
+                .bio
+                    h5 Headquarters
+                    p #{make.headquarter}
+                .bio
+                    h5 Founded
+                    p #{make.year_founded}
+                a(href=make.website_url) Website
         section.make-vehicles
             for vehicle in makeVehicles 
                 a( href=vehicle.url class="card")

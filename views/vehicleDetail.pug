@@ -5,7 +5,7 @@ block content
         section.about-vehicle
             .vehicle-image 
                 img(src=vehicle.imageUrl alt=vehicle.name)
-                h3 #{vehicle.model} #{vehicle.yom}
+                h3 #{vehicle.model} | #{vehicle.yom}
                 h2(class="price") #{vehicle.priceFormatted}
                 .description 
                     .property 
@@ -18,8 +18,8 @@ block content
                         h5 Mileage 
                         p #{vehicle.mileage}
                     .property 
-                        h5 Engine 
-                        p #{vehicle.engine_capacity}cc
+                        h5 Engine Capacity
+                        p #{vehicle.engine_capacity}CC
                     .property 
                         h5 Doors
                         p #{vehicle.doors}

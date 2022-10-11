@@ -11,7 +11,7 @@ block content
         .input-field
           label(for="price") Price
           br
-          select(id="price" name="price" placeholder="Category")
+          select(id="price" name="price" placeholder="Price")
             for range in priceRanges 
               if query 
                 option(
@@ -44,7 +44,7 @@ block content
                 ) #{mk.name}
               else 
                 option(value=mk._id) #{mk.name}
-        button(type="submit") Search
+        button(type="submit" class="submit-btn") Search
     section.display-cars
       div Recent Postings
       article.recent-cars
