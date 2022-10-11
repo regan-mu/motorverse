@@ -4,6 +4,8 @@ block content
         section.category-info 
             h3 #{category.name}
             p #{category.description}
+            .action-btn
+                a(href=`${category.url}/update`) Edit Category
         section.category-vehicles
             for vehicle in vehicles 
                 a( href=vehicle.url class="card")

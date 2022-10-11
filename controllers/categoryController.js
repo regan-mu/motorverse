@@ -89,9 +89,55 @@ exports.createPost = [
 
 
 // Update
-exports.updateGet = (req, res) => {
-    res.send("Update Category Get");
+exports.updateGet = (req, res, next) => {
+    Category.findById(req.params.id).exec((err, foundCategory) => {
+        if (err) {
+            next(err);
+        }
+        if (foundCategory) {
+            res.render(
+                "createCategory",
+                {
+                    title: foundCategory.name,
+                    query: foundCategory
+                }
+            )
+        } else {
+            const notFound = new Error();
+            notFound.name="Not found";
+            notFound.message="Category not found";
+            notFound.status=404;
+            next(notFound);
+        }
+    });
 }
-exports.updatePost = (req, res) => {
-    res.send("Update category post")
-}
+exports.updatePost = [
+    body("name", "Name required")
+        .trim()
+        .isLength({min: 2})
+        .escape(),
+    body("description", "Category Description required")
+        .trim()
+        .isLength({min: 10})
+        .escape(),
+    (req, res, next) => {
+    const errors = validationResult(req);
+    const category = new Category({
+        name: req.body.name,
+        description: req.body.description,
+        _id: req.params.id
+    });
+    if (!errors.isEmpty()) {
+        res.render("createCategory", {
+            title: "Create Category",
+            query: category
+        });
+    } else {
+        Category.findByIdAndUpdate(req.params.id, category).exec(err => {
+            if(err) {
+                return next(err);
+            }
+            res.redirect(category.url);
+        });
+    }
+}]

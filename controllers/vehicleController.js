@@ -452,7 +452,7 @@ exports.updatePost = [
                             return next(err);
                         }
                         res.redirect(vehicle.url);
-                    })
+                    });
                 } else {
                     const passwordErr = new Error();
                     passwordErr.message = "Enter correct password";
