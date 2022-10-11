@@ -12,6 +12,8 @@ block content
                     h5 Founded
                     p #{make.year_founded}
                 a(href=make.website_url) Website
+            .action-btn
+                a(href=`${make.url}/update`) Edit Category
         section.make-vehicles
             for vehicle in makeVehicles 
                 a( href=vehicle.url class="card")

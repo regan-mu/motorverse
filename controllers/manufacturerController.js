@@ -103,9 +103,70 @@ exports.createPost = [
 ]
 
 // Update
-exports.updateGet = (req, res) => {
-    res.send("Update Manufacturer Get");
+exports.updateGet = (req, res, next) => {
+    Manufacturer.findById(req.params.id).exec((err, foundMake) => {
+        if (err) {
+            return next(err);
+        }
+        if (foundMake) {
+            res.render(
+                "createMake", {
+                    title: `Update ${foundMake.name}`,
+                    query: foundMake
+                }
+            );
+        } else {
+            const error = new Error();
+            error.message="Manufacturer not found";
+            error.name="Not found";
+            error.status=404;
+            next(error);
+        }
+    });
 }
-exports.updatePost = (req, res) => {
-    res.send("Update Manufacturer Post");
-}
+exports.updatePost = [
+    body("make", "Manufacturer Name is required")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("hq", "Must provide company HQ")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("founded")
+        .trim()
+        .isLength({min: 1})
+        .withMessage("Year founded is required")
+        .isNumeric()
+        .withMessage("Year founded must  be a number")
+        .escape(),
+    body("website", "Must provide company website")
+        .trim()
+        .isLength({min: 1}),
+    body("description", "Must provide company description")
+        .trim()
+        .isLength({min: 10})
+        .escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        const query = {
+            name: req.body.make,
+            headquarter: req.body.hq,
+            year_founded: req.body.founded,
+            website_url: req.body.website,
+            description: req.body.description,
+            _id: req.params.id
+        }
+        const newMake = new Manufacturer(query);
+        if (!errors.isEmpty()) {
+            res.render("createMake", {title: "Create Make", query: query})
+        } else {
+            Manufacturer.findByIdAndUpdate(req.params.id, newMake).exec((err) => {
+                if(err) {
+                    return next(err);
+                }
+                res.redirect(newMake.url);
+            });
+        }
+    }
+]
