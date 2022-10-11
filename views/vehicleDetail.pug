@@ -31,6 +31,9 @@ block content
                         a(href=vehicle.manufacturer.url) #{vehicle.manufacturer.name}
                 h4 Description
                 p #{vehicle.description}
+                .action-btn 
+                    a(href=`${vehicle.url}/delete`) Delete Vehicle
+                    a(class="update-btn" href=`${vehicle.url}/update`) Update Vehicle
         section.other-info
             h4 All our cars go thought the 150+ point inspection and are verified. 
                 | We manage the entire transaction on your behalf making it convenient and hassle free for you

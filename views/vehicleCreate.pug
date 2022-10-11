@@ -62,12 +62,16 @@ block content
                 label(for="category") Category
                 br
                 select(id="category" name="category" placeholder="Category")
-                    option(value="" disabled="true" selected="true" hidden="true") Select Category
+                    option(
+                        value="" 
+                        disabled="true" 
+                        selected= !query ? "true": false 
+                        hidden="true") Select Category
                     for cat in category
                         if query
                             option(
                             value=cat._id
-                            selected = (query.category === cat._id.toString() ? "selected" : false)
+                            selected = (query.category.toString() === cat._id.toString() ? "selected" : false)
                             ) #{cat.name}
                         else
                             option(value=cat._id) #{cat.name}
@@ -96,12 +100,14 @@ block content
                 label(for="make") Make
                 br
                 select(id="make" name="make" placeholder="Make")
-                    option(value="" disabled="true" selected="true" hidden="true") Select Make
+                    option(value="" disabled="true" 
+                        selected= !query ? "true": false
+                        hidden="true") Select Make
                     for mk in make
                         if query
                             option(
                             value=mk._id
-                            selected = (query.manufacturer === mk._id.toString() ? "selected" : false)
+                            selected = (query.manufacturer.toString() === mk._id.toString() ? "selected" : false)
                             ) #{mk.name}
                         else 
                             option(value=mk._id) #{mk.name}

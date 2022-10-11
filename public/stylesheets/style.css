@@ -345,6 +345,19 @@ footer .socials {
   color: rgb(186, 186, 186);
   text-decoration: underline;
 }
+.action-btn {
+  margin: 32px 0 12px;
+  display: flex;
+  gap: 32px;
+}
+.action-btn a {
+  padding: 5px 12px;
+  color: #000;
+  background-color: rgb(186, 186, 186);
+}
+.action-btn .update-btn {
+  background-color: rgb(172, 255, 109);
+}
 .other-info {
   width: 100%;
   height: 100%;
@@ -630,4 +643,52 @@ footer .socials {
 }
 .manufacturer-form .describe, .manufacturer-form .submit, .category-form .describe, .category-form .submit{
   grid-column: 1 / span 1;
+}
+
+/* DELETE VEHICLE */
+.delete-main {
+  width: 100%;
+  display: flex;
+  gap: 32px;
+}
+.vehicle-delete {
+  width: 316px;
+  height: 366px;
+  border: 0.1px solid rgb(52, 52, 52);
+  padding: 16px;
+}
+.vehicle-delete img {
+  width: 100%;
+  height: 50%;
+}
+.vehicle-delete p {
+  font-size: 0.9rem;
+}
+.vehicle-delete h6 {
+  font-size:1.2rem;
+  color: var(--themecolor);
+}
+.delete-main .submit {
+  margin: 16px 0 0;
+}
+.delete-main .msg {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.delete-main label {
+  font-size: 0.9rem;
+}
+.delete-main .password {
+  margin: 16px 0 0;
+}
+.delete-main form input {
+  height: 48px;
+  width: 320px;
+  padding: 0 0 0 16px;
+  font-size: 1.1rem;
+  background-color: rgb(79, 79, 79);
+  border-radius: 4px;
+  border: 0.5px solid #000;
+  color: rgb(186, 186, 186);
+  margin: 6px 0 0;
 }
