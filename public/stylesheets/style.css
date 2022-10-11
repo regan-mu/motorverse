@@ -622,3 +622,12 @@ footer .socials {
   height: 48px;
   font-size: 1.2rem;
 }
+
+/* CREATE MANUFACTURER */
+.form-section .manufacturer-form {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, auto);
+}
+.manufacturer-form .describe, .manufacturer-form .submit {
+  grid-column: 1 / span 1;
+}

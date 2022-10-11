@@ -1,0 +1,60 @@
+extends layout 
+block content 
+    section.form-section 
+        h3 Add Manufacturer
+        form(method="post" class="manufacturer-form")
+            .input-field
+                label(for="name") Name
+                br
+                input(
+                    id="name" 
+                    type="text" 
+                    name="make" 
+                    placeholder="Make e.g Audi" 
+                    required
+                    value=query ? query.name: ""
+                    )
+            .input-field
+                label(for="hq") Company Hq
+                br
+                input(
+                    id="hq" 
+                    type="text" 
+                    name="hq" 
+                    placeholder="Nairobi, Kenya" 
+                    required
+                    value=query ? query.headquarter: ""
+                    )
+            .input-field
+                label(for="founded") Year Founded
+                br
+                input(
+                    id="founded" 
+                    type="number" 
+                    name="founded" 
+                    placeholder="1902" 
+                    required
+                    value=query ? query.year_founded: ""
+                    )
+            .input-field
+                label(for="website") Website Url
+                br
+                input(
+                    id="website" 
+                    type="text" 
+                    name="website" 
+                    placeholder="https://company.org/en" 
+                    required
+                    value=query ? query.website_url: ""
+                    )
+            .input-field.describe 
+                label(for="desc") Description
+                br
+                textarea(
+                    id="desc" 
+                    name="description" 
+                    placeholder="Description"  
+                    required
+                    ) #{query ? query.description: ""}
+            .input-field.submit 
+                button(type="submit"  class="submit-btn") Add Vehicle

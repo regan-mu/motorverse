@@ -151,10 +151,10 @@ exports.createGet = (req, res, next) => {
     async.parallel(
         {
             makes(callback) {
-                Manufacturer.find({}, "name").exec(callback)
+                Manufacturer.find({}, "name").sort({name: 1}).exec(callback)
             },
             categories(callback) {
-                Category.find({}, "name").exec(callback)
+                Category.find({}, "name").sort({name: 1}).exec(callback)
             }
         },
         (error, results) => {
