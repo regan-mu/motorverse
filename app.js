@@ -12,10 +12,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
-app.use(helmet());
 
 // Mongoose Setup
-// For production
 const mongoDB = process.env.MONGODB_URI
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
