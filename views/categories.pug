@@ -3,8 +3,11 @@ block content
     main.all-categories 
         .top-sec
             h3 All Categories
-            .add-btn
-                a(href="/motorverse/category/create") Create Category
+            .top-sec-btns
+                .add-btn
+                    a(href="/motorverse/category/create") Create Category
+                .add-btn
+                    a(href="/motorverse/manufacturer/create") Add Manufacturer
         article.categories
             if categories 
                 for category in categories 

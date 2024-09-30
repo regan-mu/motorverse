@@ -352,10 +352,12 @@ footer .socials {
 }
 
 .action-btn a, .add-btn a {
-  padding: 5px 12px;
+  padding: 10px 16px;
   color: #000;
   background-color: rgb(186, 186, 186);
+  border-radius: 10px;
 }
+
 .action-btn .update-btn {
   background-color: rgb(172, 255, 109);
 }
@@ -504,6 +506,11 @@ footer .socials {
   justify-content: space-between;
   align-items: center;
   height: 100px;
+}
+.top-sec-btns {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 .makes-list h3 {
   font-size: 1.5rem;
