@@ -61,12 +61,3 @@ Motorverse is still a work in progress, and there's plenty of room for improveme
 ### License
 
 This project is licensed under the MIT License.
-
-## This an inventory application built with:- 
-
-* Node
-* Express
-* MongoDB
-* CSS
-* PUG
-** Check it out [Demo](https://motorverse.herokuapp.com/motorverse)
