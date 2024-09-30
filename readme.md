@@ -12,10 +12,10 @@ Add, edit, and delete car listings (for authorized users).
 
 ## Tech Stack
 
-Backend: Node.js, Express.js
-Database: MongoDB
-Templating Engine: PUG
-Styling: CSS
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB
+* **Templating Engine:** PUG
+* **Styling:** CSS
 
 ## Installation
 
